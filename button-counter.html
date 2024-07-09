@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Button Press Counter with Countdown Clock</title>
+    <style>
+      /* Add some basic styling */
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 40px;
+        background-color: #000; /* Black background */
+      }
+      button {
+        padding: 20px 40px; /* Increased padding to make the button bigger */
+        font-size: 24px;
+        background-color: #FFA500; /* Orange background */
+        color: #FFFFFF; /* White text */
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #FF8C00; /* Darker orange on hover */
+      }
+      #counter {
+        font-size: 36px;
+        color: #FF0000; /* Red text for the counter */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Button Press Counter with Countdown Clock</h1>
+    <button id="my-button">Press me!</button>
+    <p id="counter">Button pressed 0 times</p>
+    <p id="countdown">30 seconds</p>
+
+    <script>
+      const button = document.getElementById("my-button");
+      let count = 0;
+      let timerId;
+
+      button.addEventListener("click", () => {
+        count++;
+        document.getElementById("counter").innerHTML = `Button pressed ${count} times`;
+        document.getElementById("countdown").innerHTML = "30 seconds";
+        startCountdown();
+      });
+
+      function startCountdown() {
+        let seconds = 30;
+        timerId = setInterval(function() {
+          seconds--;
+          document.getElementById("countdown").innerHTML = `${seconds} seconds`;
+          if (seconds <= 0) {
+            clearInterval(timerId);
+            document.getElementById("countdown").innerHTML = "Time's up!";
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
